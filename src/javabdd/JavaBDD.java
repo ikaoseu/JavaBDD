@@ -85,7 +85,7 @@ public class JavaBDD {
 }
     public void leeDatos(String tabla)throws SQLException{
         
-         Connection conexion = DriverManager.getConnection("jdbe:mysql;//localhost/tienda");
+         Connection conexion = DriverManager.getConnection("jdbe:mysql;//localhost/usuario");
           Statement st = conexion.createStatement();
 
             
@@ -101,13 +101,19 @@ public class JavaBDD {
     
      public void grabaRegistro(String dni, String nombre, String correo, String tlf)throws SQLException{
         
-           Connection conexion = DriverManager.getConnection("jdbe:mysql;//localhost/tienda");
+           Connection conexion = DriverManager.getConnection("jdbe:mysql;//localhost/usuario");
            Statement st = conexion.createStatement();
            st.executeUpdate("insert into cliente values ("+dni+", '"+nombre+"', '"+correo+"','"+tlf+"')");
          
+           
     }
     public void borraDatos(String dni)throws SQLException{
         
-        
+             Connection conexion = DriverManager.getConnection("jdbe:mysql;//localhost/usuario");
+             Statement st = conexion.createStatement();
+             st.executeUpdate("select * from usuarios;\n" +
+                                "delete from usuarios\n" +
+                                " where dni='"+dni+"';\n" +
+                                "");
     }
     }
